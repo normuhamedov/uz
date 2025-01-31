@@ -1,0 +1,330 @@
+{
+    "toshkent":[
+        {
+            "FISH":"Турсунов Ж.Ю",
+            "Lavozim": "Раис",
+            "raqam": 100,
+            "iRaqam": 71230458700,
+            "xonasi": "-"
+        },
+        {
+            "FISH":"Қабулхона №1",
+            "Lavozim": "Раис ёрдачимчиси",
+            "raqam": 100,
+            "iRaqam": 71230458700,
+            "xonasi": "-"
+        },
+        {
+            "FISH":"Назаров Ш.Б",
+            "Lavozim": "Раис биринчи ўринбосари",
+            "raqam": 102,
+            "iRaqam": "-",
+            "xonasi": 201
+        },
+        {
+            "FISH":"Қабулхона № 2",
+            "Lavozim": "Раис биринчи ўринбосари ёрдамчиси",
+            "raqam": 111,
+            "iRaqam": 712372639,
+            "xonasi": 201
+        },
+        {
+            "FISH":"Адилов О.Ч",
+            "Lavozim": "Раис ўринбосари-бош муҳандис",
+            "raqam": 103,
+            "iRaqam": "",
+            "xonasi": 201
+        },
+        {
+            "FISH":"Қабулхона № 2",
+            "Lavozim": "Раис ўринбосари-бош муҳандис ёрдамчиси",
+            "raqam": 111,
+            "iRaqam": 712372639,
+            "xonasi": 201
+        },
+        {
+            "FISH":"Абдурахманов А.Н",
+            "Lavozim": "Раис ўринбосари",
+            "raqam": 104,
+            "iRaqam": "",
+            "xonasi": 206
+        },
+        {
+            "FISH":"Абдуллаев Муродулло",
+            "Lavozim": "Раис маслахатчиси",
+            "raqam": 107,
+            "iRaqam": 712373745,
+            "xonasi": 123
+        },
+        {
+            "FISH":"Джумаева Нилуфар",
+            "Lavozim": "Матбуот-котиби",
+            "raqam": 134,
+            "iRaqam": "712372846 - 909482145", 
+            "xonasi": 215
+        }
+    ],
+    "viloyat2":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat3":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat4":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat5":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat6":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat7":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat8":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat9":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat10":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat11":[
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 122,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+    ,
+    "viloyat12":[
+        {
+            "FISH":"E.S.Toshmat",
+            "Lavozim": "Mutaxasis",
+            "raqam": 121,
+            "iRaqam": 711117171,
+            "xonasi": 611
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "eeee",
+            "raqam": 1222,
+            "iRaqam": 711117171,
+            "xonasi": 412
+        },
+        {
+            "FISH":"E.S.Eshmat",
+            "Lavozim": "etakchi",
+            "raqam": 163,
+            "iRaqam": 711117171,
+            "xonasi": 113
+        }
+    ]
+}

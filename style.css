@@ -1,0 +1,16 @@
+
+
+
+@keyframes text-resize {
+    0%, 100% {
+        font-size: 30px;
+    }
+    50% {
+        font-size: 35px;
+    }
+}
+
+.animate-pulse-custom {
+    animation: text-resize 5s infinite ease-in-out;
+}
+
