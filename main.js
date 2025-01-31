@@ -1,160 +1,172 @@
-// Region names mapping
-const regionNames = {
-    'toshkent': 'Тошкент шаҳри',
-    'viloyat2': 'Андижон',
-    'viloyat3': 'Бухоро',
-    'viloyat4': 'Фарғона',
-    'viloyat5': 'Жиззах',
-    'viloyat6': 'Наманган',
-    'viloyat7': 'Навоий',
-    'viloyat8': 'Қашқадарё',
-    'viloyat9': 'Самарқанд',
-    'viloyat10': 'Сирдарё',
-    'viloyat11': 'Сурхондарё',
-    'viloyat12': 'Хоразм'
-};
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData();
+});
 
-let allData = {};
+let allData = [];
 
-// Fetch data from db.json
 async function fetchData() {
     try {
         const response = await fetch('db.json');
-        allData = await response.json();
-        renderAllData();
+        const data = await response.json();
+ 
+        if (!Array.isArray(data)) {
+            console.error('Error: JSON data is not an array:', data);
+            return;
+        }
+
+        allData = data;
+        populateOrganizationFilter();
+        displayData(allData);
     } catch (error) {
         console.error('Error loading data:', error);
     }
 }
 
-// Render all data or filtered data
-function renderAllData(filterRegion = 'all', searchTerm = '') {
-    const mainContent = document.getElementById('mainContent');
-    mainContent.innerHTML = '';
 
-    Object.entries(allData).forEach(([region, employees]) => {
-        if (filterRegion === 'all' || filterRegion === region) {
-            const filteredEmployees = employees.filter(employee => matchesSearch(employee, searchTerm));
-            
-            if (filteredEmployees.length > 0) {
-                const regionSection = document.createElement('section');
-                regionSection.className = 'mb-8';
-                
-                const regionTitle = document.createElement('h2');
-                regionTitle.className = 'text-2xl font-bold mb-4 text-teal-700';
-                regionTitle.textContent = regionNames[region] || region;
-                regionSection.appendChild(regionTitle);
+function populateOrganizationFilter() {
+    const filterSelect = document.getElementById('organizationFilter');
+    if (!filterSelect || !Array.isArray(allData)) return;
 
-                const table = createTable(filteredEmployees);
-                regionSection.appendChild(table);
+    const organizations = [...new Set(allData.map(item => item.tashkilot))];
 
-                mainContent.appendChild(regionSection);
-            }
-        }
+    filterSelect.innerHTML = '<option value="all">Барча ташкилотлар</option>';
+    organizations.forEach(org => {
+        const option = document.createElement('option');
+        option.value = org;
+        option.textContent = org;
+        filterSelect.appendChild(option);
     });
 }
 
-// Create table for a region
+
+function displayData(data) {
+    const container = document.getElementById('dataContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const groupedData = groupUsersByOrganizationAndDepartment(data);
+
+    Object.entries(groupedData).forEach(([organization, departments]) => {
+        const orgDiv = document.createElement('div');
+        orgDiv.classList.add('organization', 'mb-8');
+
+        const orgTitleContainer = document.createElement('div');
+        orgTitleContainer.className = 'w-full bg-teal-700 text-white py-2 px-4 text-center text-2xl font-bold sticky top-0 z-10 rounded-[20px]';
+        
+        const orgTitle = document.createElement('h2');
+        orgTitle.textContent = organization;
+        orgTitleContainer.appendChild(orgTitle);
+        
+        orgDiv.appendChild(orgTitleContainer);
+
+        Object.entries(departments).forEach(([department, employees]) => {
+            const deptTitle = document.createElement('h3');
+            if(department=== "undefined"){
+                deptTitle.textContent = "";
+            }else{
+                deptTitle.textContent = department;
+            }
+            deptTitle.className = 'text-xl font-bold text-center mt-8 mb-2 text-teal-900';
+            orgDiv.appendChild(deptTitle);
+
+            const table = createTable(employees);
+            orgDiv.appendChild(table);
+        });
+
+        container.appendChild(orgDiv);
+    });
+}
+
+
+function groupUsersByOrganizationAndDepartment(users) {
+    return users.reduce((acc, user) => {
+        if (!acc[user.tashkilot]) {
+            acc[user.tashkilot] = {};
+        }
+        if (!acc[user.tashkilot][user.bolim]) {
+            acc[user.tashkilot][user.bolim] = [];
+        }
+        acc[user.tashkilot][user.bolim].push(user);
+        return acc;
+    }, {});
+}
+
 function createTable(employees) {
     const table = document.createElement('table');
-    table.className = 'min-w-full bg-white rounded-lg shadow overflow-hidden';
+    table.className = 'w-full bg-white rounded-[20px] shadow overflow-hidden mb-4 border border-gray-200';
     
     const thead = document.createElement('thead');
     thead.className = 'bg-gray-100';
     thead.innerHTML = `
-        <tr>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Ф.И.Ш</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Лавозим</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Рақам</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Ишчи рақам</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Хона</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold">Ўзгартириш</th>
+        <tr class="flex flex-wrap bg-gray-300 text-sm font-semibold text-gray-1000 text-left">
+            <th class="px-4 py-2 w-1/4">Ф.И.Ш</th>
+            <th class="px-4 py-2 w-1/4">Лавозим</th>
+            <th class="px-4 py-2 w-1/4">Телефон</th>
+            <th class="px-4 py-2 w-1/4">Хона</th>
         </tr>
     `;
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
-    employees.forEach(employee => {
-        const row = document.createElement('tr');
-        row.className = 'border-t hover:bg-gray-50';
-        row.innerHTML = `
-            <td class="px-6 py-4">${employee.FISH}</td>
-            <td class="px-6 py-4">${employee.Lavozim}</td>
-            <td class="px-6 py-4">${employee.raqam}</td>
-            <td class="px-6 py-4">${formatPhoneNumber(employee.iRaqam)}</td>
-            <td class="px-6 py-4">${employee.xonasi}</td>
-            <td class="px-6 py-4">
-                <div class="flex gap-2">
-                    <button class="text-blue-600 hover:text-blue-800" onclick="editEmployee('${employee.raqam}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                    </button>
-                    <button class="text-red-600 hover:text-red-800" onclick="deleteEmployee('${employee.raqam}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                    </button>
-                </div>
-            </td>
-        `;
-        tbody.appendChild(row);
-    });
-    table.appendChild(tbody);
+    tbody.className = 'divide-y divide-gray-300';
 
+    if (employees.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="text-center py-4">Маълумот топилмади</td></tr>`;
+    } else {
+        employees.forEach(employee => {
+            const row = document.createElement('tr');
+            row.className = 'border-t hover:bg-gray-50 flex flex-wrap';
+            row.innerHTML = `
+                <td class="px-4 py-3 w-1/4">${employee.FISH || '-'}</td>
+                <td class="px-4 py-3 w-1/4">${employee.lavozim || '-'}</td>
+                <td class="px-4 py-3 w-1/4">${employee.tel ? employee.tel.toString() : '-'}</td>
+                <td class="px-4 py-3 w-1/4">${employee.xona ? employee.xona.toString() : '-'}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    
+    table.appendChild(tbody);
     return table;
 }
 
-// Format phone number
-function formatPhoneNumber(number) {
-    const str = number.toString();
-    return `(${str.slice(0,2)}) ${str.slice(2,5)}-${str.slice(5,7)}-${str.slice(7)}`;
+
+
+// Filter ishlashi
+const filterSelect = document.getElementById('organizationFilter');
+if (filterSelect) {
+    filterSelect.addEventListener('change', () => {
+        const selectedOrg = filterSelect.value;
+        const searchTerm = document.getElementById('searchInput').value;
+        let filteredData = allData;
+        
+        if (selectedOrg !== 'all') {
+            filteredData = filteredData.filter(item => item.tashkilot === selectedOrg);
+        }
+        
+        displayData(filteredData.filter(user => matchesSearch(user, searchTerm)));
+    });
 }
 
-// Search functionality
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const filterOrganization = document.getElementById('organizationFilter').value;
+    const searchTerm = e.target.value;
+    let filteredData = allData;
+    
+    if (filterOrganization !== 'all') {
+        filteredData = filteredData.filter(user => user.tashkilot === filterOrganization);
+    }
+    
+    displayData(filteredData.filter(user => matchesSearch(user, searchTerm)));
+});
+
 function matchesSearch(employee, searchTerm) {
     if (!searchTerm) return true;
     searchTerm = searchTerm.toLowerCase();
     return (
-        employee.FISH.toLowerCase().includes(searchTerm) ||
-        employee.Lavozim.toLowerCase().includes(searchTerm) ||
-        employee.raqam.toString().includes(searchTerm) ||
-        employee.iRaqam.toString().includes(searchTerm) ||
-        employee.xonasi.toString().includes(searchTerm)
+        (employee.FISH && employee.FISH.toLowerCase().includes(searchTerm)) ||
+        (employee.lavozim && employee.lavozim.toLowerCase().includes(searchTerm)) ||
+        (employee.tel && employee.tel.toString().includes(searchTerm)) ||
+        (employee.xona && employee.xona.toString().includes(searchTerm))
     );
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    fetchData();
-
-    // Region filter
-    document.getElementById('regionFilter').addEventListener('change', (e) => {
-        const searchTerm = document.getElementById('searchInput').value;
-        renderAllData(e.target.value, searchTerm);
-    });
-
-    // Search
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        const filterRegion = document.getElementById('regionFilter').value;
-        renderAllData(filterRegion, e.target.value);
-    });
-
-    document.getElementById('searchButton').addEventListener('click', () => {
-        const filterRegion = document.getElementById('regionFilter').value;
-        const searchTerm = document.getElementById('searchInput').value;
-        renderAllData(filterRegion, searchTerm);
-    });
-});
-
-// Edit employee function (placeholder)
-function editEmployee(employeeId) {
-    console.log(`Editing employee ${employeeId}`);
-    // Implement edit functionality
-}
-
-// Delete employee function (placeholder)
-function deleteEmployee(employeeId) {
-    console.log(`Deleting employee ${employeeId}`);
-    // Implement delete functionality
 }
