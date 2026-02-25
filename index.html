@@ -30,8 +30,34 @@
         }
     </style>
 </head>
+<body   class="bg-gray-100 overflow-y-scroll">
+    <div id="loginModal" class="fixed inset-0 bg-teal-700 bg-opacity-80  backdrop-blur-sm flex items-center justify-center z-50">
 
-<body class="bg-gray-100 overflow-y-scroll">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 relative">
+
+        <h2 class="text-2xl font-bold text-center mb-6">Кириш</h2>
+
+        <input 
+            type="password" 
+            id="passwordInput"
+            placeholder="Паролни киритинг"
+            class="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+        >
+
+        <button 
+            onclick="checkPassword()"
+            class="w-full mt-4 bg-teal-700 hover:bg-teal-700 text-white py-3 rounded-xl font-semibold transition duration-200"
+        >
+            Кириш
+        </button>
+
+        <p id="errorText" class="text-red-500 text-center mt-3 hidden">
+            Нотўғри парол! <br>
+            334042201
+        </p>
+
+    </div>
+</div>
     <header class="bg-teal-700 text-white p-10 py-[100px]">
         <h1 class="text-3xl font-bold mb-8 text-center">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ<br>АВТОМОБИЛЬ ЙЎЛЛАРИ ҚЎМИТАСИ</h1>
         
@@ -99,5 +125,25 @@
         
     </footer>
     <script src="main.js"></script>
+    <script>
+    function checkPassword() {
+        const correctPassword = "MBFD";
+        const input = document.getElementById("passwordInput").value;
+        const error = document.getElementById("errorText");
+
+        if (input === correctPassword) {
+            document.getElementById("loginModal").style.display = "none";
+        } else {
+            error.classList.remove("hidden");
+        }
+    }
+
+    // Enter bosganda ham ishlashi uchun
+    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkPassword();
+        }
+    });
+     </script>
 </body>
 </html>
